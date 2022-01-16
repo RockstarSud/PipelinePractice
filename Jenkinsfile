@@ -1,3 +1,4 @@
+/*  SCRIPTED PIPELINE
 node {
   stage('Checking maven version') {
     sh 'mvn -v'
@@ -7,5 +8,23 @@ node {
   }
   stage('Deploy') {
     sh 'mvn clean test'    
+  }
+}
+*/
+
+/*   DECLARATIVE PIPELINE   */
+pipeline {
+  agent any 
+  stages {
+    stage('Maven Version') {
+      steps {
+        sh 'mvn -v'
+      }
+    }
+    stage('Running Test') {
+      steps {
+        sh 'mvn clean test'
+      }
+    }
   }
 }
